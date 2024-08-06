@@ -181,7 +181,7 @@ def config(argv=None, parser=None):
                         metavar='<dataset name>',
                         action=StoreValue,
                         type=str,
-                        default='output_geonex',
+                        default='output',
                         nargs='?',
                         help='Name of dataset (i.e subfolder name within project folder). Default: %(default)s')
 
