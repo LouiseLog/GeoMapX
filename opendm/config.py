@@ -181,7 +181,7 @@ def config(argv=None, parser=None):
                         metavar='<dataset name>',
                         action=StoreValue,
                         type=str,
-                        default='output',
+                        default='code',
                         nargs='?',
                         help='Name of dataset (i.e subfolder name within project folder). Default: %(default)s')
 
@@ -454,7 +454,7 @@ def config(argv=None, parser=None):
     parser.add_argument('--pc-quality',
                         metavar='<string>',
                         action=StoreValue,
-                        default='ultra',
+                        default='high',
                         choices=['ultra', 'high', 'medium', 'low', 'lowest'],
                         help=(
                             'Set point cloud quality. Higher quality generates better, denser point clouds, but requires more memory and takes longer. Each step up in quality increases processing time roughly by a factor of 4x.'
@@ -479,7 +479,7 @@ def config(argv=None, parser=None):
     parser.add_argument('--pc-las',
                         action=StoreTrue,
                         nargs=0,
-                        default=True,
+                        default=False,
                         help='Export the georeferenced point cloud in LAS format. Default: %(default)s')
 
     parser.add_argument('--pc-ept',
@@ -865,7 +865,7 @@ def config(argv=None, parser=None):
     parser.add_argument('--optimize-disk-space',
                         action=StoreTrue,
                         nargs=0,
-                        default=False,
+                        default=True,
                         help=('Delete heavy intermediate files to optimize disk space usage. This '
                               'affects the ability to restart the pipeline from an intermediate stage, '
                               'but allows datasets to be processed on machines that don\'t have sufficient '
