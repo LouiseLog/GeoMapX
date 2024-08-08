@@ -8,18 +8,21 @@ def copy_geomapx_files(args):
     Rename files in the project directory
     """
     # Rename the files
+
+    
     path_dem = os.path.join(args.project_path, "odm_dem")
     path_ortho = os.path.join(args.project_path, "odm_orthophoto")
     path_report = os.path.join(args.project_path, "odm_report")
     path_texturing = os.path.join(args.project_path, "odm_texturing")
     path_georef = os.path.join(args.project_path, "odm_georeferencing")
 
-    path_geomapx = os.path.join(args.project_path, "geomapx")
-    path_geomapx_mdem = os.path.join(args.project_path, "geomapx", "Modelos_Digitais_de_Elevação")
-    path_geomapx_ortho = os.path.join(args.project_path, "geomapx", "Ortophotos")
-    path_geomapx_report = os.path.join(args.project_path, "geomapx", "Relatórios_GeoMapX")
-    path_geomapx_texturing = os.path.join(args.project_path, "geomapx", "Texturizações")
-    path_geomapx_georef = os.path.join(args.project_path, "geomapx", "Georreferenciamentos")
+    path_geomapx = os.path.join(args.project_path, "output", "geomapx")
+
+    path_geomapx_mdem = os.path.join(path_geomapx, "Modelos_Digitais_de_Elevação")
+    path_geomapx_ortho = os.path.join(path_geomapx, "Ortophotos")
+    path_geomapx_report = os.path.join(path_geomapx, "Relatórios_GeoMapX")
+    path_geomapx_texturing = os.path.join(path_geomapx, "Texturizações")
+    path_geomapx_georef = os.path.join(path_geomapx, "Georreferenciamentos")
 
     path_dem_dsm = os.path.join(path_dem, "dsm.tif")
     path_dem_dtm = os.path.join(path_dem, "dtm.tif")
@@ -41,7 +44,7 @@ def copy_geomapx_files(args):
     path_geomapx_georef_model_csv = os.path.join(path_geomapx_georef, "Nuvem_de_Pontos.csv")
     path_geomapx_georef_model_laz = os.path.join(path_geomapx_georef, "Nuvem_de_Pontos.laz")
 
-    path_geomapx_zip = os.path.join(args.project_path, "geomapx.zip")
+    path_geomapx_zip = os.path.join(args.project_path, "arquivos_geomapx")
 
     os.mkdir(path_geomapx)
     os.mkdir(path_geomapx_mdem)
@@ -59,6 +62,7 @@ def copy_geomapx_files(args):
     shutil.copy(path_georef_model_csv, path_geomapx_georef_model_csv)
     shutil.copy(path_georef_model_laz, path_geomapx_georef_model_laz)
     shutil.make_archive(path_geomapx, 'zip', path_geomapx_zip)
+
 
     """
     shutil.copytree(path_dem, path_geomapx_mdem)
