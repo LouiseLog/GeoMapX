@@ -15,7 +15,9 @@ from opendm.progress import progressbc
 from opendm.utils import get_processing_results_paths, rm_r
 from opendm.arghelpers import args_to_dict, save_opts, compare_args, find_rerun_stage
 
+
 from stages.odm_app import ODMApp
+from stages.geomapx_files import copy_geomapx_files
 
 def odm_version():
     try:
@@ -66,7 +68,8 @@ if __name__ == '__main__':
 
     if retcode == 0:
         save_opts(opts_json, args)
-    
+
+    copy_geomapx_files(args)
     # Do not show ASCII art for local submodels runs
     if retcode == 0 and not "submodels" in args.project_path:
         log.ODM_INFO('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&')
