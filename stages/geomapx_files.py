@@ -9,14 +9,15 @@ def copy_geomapx_files(args):
     """
     # Rename the files
 
-    
+
     path_dem = os.path.join(args.project_path, "odm_dem")
     path_ortho = os.path.join(args.project_path, "odm_orthophoto")
     path_report = os.path.join(args.project_path, "odm_report")
     path_texturing = os.path.join(args.project_path, "odm_texturing")
     path_georef = os.path.join(args.project_path, "odm_georeferencing")
 
-    path_geomapx = os.path.join(args.project_path, "output", "geomapx")
+    output_path = args.project_path.replace('code', 'output')
+    path_geomapx = os.path.join(output_path, "geomapx")
 
     path_geomapx_mdem = os.path.join(path_geomapx, "Modelos_Digitais_de_Elevação")
     path_geomapx_ortho = os.path.join(path_geomapx, "Ortophotos")
@@ -44,7 +45,7 @@ def copy_geomapx_files(args):
     path_geomapx_georef_model_csv = os.path.join(path_geomapx_georef, "Nuvem_de_Pontos.csv")
     path_geomapx_georef_model_laz = os.path.join(path_geomapx_georef, "Nuvem_de_Pontos.laz")
 
-    path_geomapx_zip = os.path.join(args.project_path, "arquivos_geomapx")
+    path_geomapx_zip = os.path.join(output_path, "arquivos_geomapx")
 
     os.mkdir(path_geomapx)
     os.mkdir(path_geomapx_mdem)
@@ -61,7 +62,9 @@ def copy_geomapx_files(args):
     shutil.copy(path_texturing_model_obj, path_geomapx_texturing_model_obj)
     shutil.copy(path_georef_model_csv, path_geomapx_georef_model_csv)
     shutil.copy(path_georef_model_laz, path_geomapx_georef_model_laz)
-    shutil.make_archive(path_geomapx, 'zip', path_geomapx_zip)
+    
+    shutil.make_archive(path_geomapx_zip, 'zip', path_geomapx)
+    shutil.rmtree(path_geomapx)
 
 
     """
